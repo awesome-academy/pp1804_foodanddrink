@@ -15,7 +15,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('exit');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'CheckRole'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'checkrole'], function() {
     Route::resource('users', 'UserController');
 });
 Route::get('/profile', 'UserController@profile')->name('profile');
@@ -31,5 +31,9 @@ Route::get('/menu', 'UserController@menu')->name('menu');
 Route::get('/admin', 'UserController@admin')->name('admin');
 Route::get('/cartOrder', 'UserController@cartOrder')->name('cartOrder');
 Route::get('/detailOrder', 'OrderController@guestOrder')->name('detailOrder');
+
+Route::post('/createOrder', 'OrderController@createOrder')->name('createOrder');
+
+Route::get('/viewOrder', 'OrderController@viewOrder')->name('viewOrder');
 Route::get('/', 'HomeController@index')->name('home');
 
